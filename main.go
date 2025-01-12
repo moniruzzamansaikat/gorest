@@ -10,6 +10,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"fiber-app/routes"
+	"fiber-app/models"
 )
 
 // Initialize MySQL database connection with GORM
@@ -45,19 +46,26 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	// Create a new Fiber app
 	app := fiber.New()
 
-	// Set up MySQL connection with GORM
+	// Set up MySQL connection with GORM 
 	db := setupDatabase()
 
-	// Migrate the schema (automatically creates tables, etc.)
-	// Replace 'User' with your model struct if needed
-	err := db.AutoMigrate(&routes.User{})
-	if err != nil {
-		log.Fatal("Migration failed: ", err)
+	// List of models to migrate
+	modelsToMigrate := []interface{}{
+		&models.User{},
+		&models.Test{},
+		// Add other models here
 	}
 
+	// Migrate the models
+	for _, model := range modelsToMigrate {
+		err := db.AutoMigrate(model)
+		if err != nil {
+			log.Fatalf("Migration failed for %T: %v", model, err)
+		}
+	}
+	
 	// Set up routes and pass the database connection
 	routes.SetupRoutes(app, db)
 
