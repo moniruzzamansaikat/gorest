@@ -1,7 +1,3 @@
-Here's a minimal `README.md` for your project that provides clear installation and usage instructions for others:
-
----
-
 # Fiber Test Application
 
 A simple web application built using the [Fiber](https://github.com/gofiber/fiber) web framework in Go.
