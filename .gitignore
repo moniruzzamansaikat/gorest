@@ -1,0 +1,30 @@
+# Go binary executables
+/bin
+/obj
+
+# Go modules
+/go.sum
+/go.mod
+
+# Dependency directories
+/vendor/
+
+# IDE / Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Coverage output
+*.out
+*.cover
+
+# Temporary files
+*.tmp
